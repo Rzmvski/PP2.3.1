@@ -1,0 +1,12 @@
+package app.Service;
+
+import app.Model.User;
+
+import java.util.List;
+
+public interface UserService {
+    void add(User user);
+    List<User> getAllUsers();
+    User getUserById(Long id);
+    void delete(User user);
+}

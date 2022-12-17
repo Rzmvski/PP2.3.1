@@ -1,6 +1,6 @@
 package app.Config;
 
-import app.model.User;
+import app.Model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

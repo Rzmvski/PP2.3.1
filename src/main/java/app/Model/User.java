@@ -1,4 +1,4 @@
-package app.model;
+package app.Model;
 
 import javax.persistence.*;
 
@@ -13,7 +13,7 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "age")
-    private int age;
+    private Integer age;
     @Column(name = "email")
     private String email;
 
@@ -52,7 +52,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 

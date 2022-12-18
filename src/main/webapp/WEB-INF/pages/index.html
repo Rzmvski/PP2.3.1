@@ -42,7 +42,10 @@
             <a th:href="@{/user_{id}/edit(id=${user.getId()})}">
                 <input type="button" value="edit"/>
             </a>
-            <input type="button" value="remove" onclick="window.location.href=''"/>
+            <br/>
+            <form th:method="DELETE" th:action="@{/user_{id}(id=${user.getId()})}">
+                <input type="submit" value="delete"/>
+            </form>
         </td>
     </tr>
 </table>

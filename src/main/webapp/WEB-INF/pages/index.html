@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 4px;
+        }
+        th {
+            background: #dadada;
+            height: 40px;
+            vertical-align: bottom;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
 <h1>Homepage</h1>
@@ -13,6 +30,7 @@
         <th>last name</th>
         <th>age</th>
         <th>email</th>
+        <th></th>
     </tr>
     <tr th:block th:each="user : ${users}">
         <td th:text="${user.getId()}"></td>
@@ -20,6 +38,12 @@
         <td th:text="${user.getLastName()}"></td>
         <td th:text="${user.getAge()}"></td>
         <td th:text="${user.getEmail()}"></td>
+        <td>
+            <a th:href="@{/user_{id}/edit(id=${user.getId()})}">
+                <input type="button" value="edit"/>
+            </a>
+            <input type="button" value="remove" onclick="window.location.href=''"/>
+        </td>
     </tr>
 </table>
 <br>

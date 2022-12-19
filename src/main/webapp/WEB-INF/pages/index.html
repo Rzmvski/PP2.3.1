@@ -15,15 +15,15 @@
             <th>last name</th>
             <th>age</th>
             <th>email</th>
-            <th class="buttons"></th>
+            <th></th>
         </tr>
-        <tr th:block th:each="user : ${users}">
+        <tr th:block th:each="user : ${users}" class="user-row">
             <td th:text="${user.getId()}"></td>
             <td th:text="${user.getFirstName()}"></td>
             <td th:text="${user.getLastName()}"></td>
             <td th:text="${user.getAge()}"></td>
             <td th:text="${user.getEmail()}"></td>
-            <td>
+            <td class="buttons">
                 <form th:method="GET" th:action="@{/user_{id}/edit(id=${user.getId()})}">
                     <input type="submit" value="edit"/>
                 </form>

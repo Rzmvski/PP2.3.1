@@ -1,6 +1,10 @@
 package app.Model;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "users")
@@ -13,8 +17,11 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "age")
+    @Min(value = 0, message = "Age should not be less than 0")
+    @Max(value = 150, message = "Age should not be greater than 150")
     private Integer age;
     @Column(name = "email")
+    @Email(message = "Email should be valid")
     private String email;
 
     public User() {

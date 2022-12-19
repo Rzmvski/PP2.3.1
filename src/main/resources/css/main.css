@@ -61,7 +61,7 @@ form div {
 }
 
 input[type=text] {
-    width: 100%;
+    width: 97%;
     padding: 6px;
     border: 1px solid #ccc;
     resize: vertical;
@@ -90,4 +90,12 @@ label {
 
 .buttons {
     width: 50px;
+}
+
+.error {
+    color: #ba3939;
+    background: #ffe0e0;
+    border: 1px solid #a33a3a;
+    padding: 10px;
+    margin: 10px 0px;
 }

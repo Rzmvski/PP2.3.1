@@ -4,9 +4,10 @@ import app.Model.User;
 import app.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -20,16 +21,19 @@ public class UserController {
     public String index(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "index";
+        return "/index";
     }
 
     //-----Create ------
     @GetMapping("/add")
     public String add(@ModelAttribute("user") User user) {
-        return "add";
+        return "/add";
     }
     @PostMapping()
-    public String saveUser(@ModelAttribute("user") User user) {
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/add";
+        }
         userService.add(user);
         return "redirect:/";
     }
@@ -41,7 +45,11 @@ public class UserController {
         return "/edit";
     }
     @PatchMapping("/user_{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
+                         @PathVariable("id") Long id) {
+        if (bindingResult.hasErrors()) {
+            return "/edit";
+        }
         userService.update(id, user);
         return "redirect:/";
     }

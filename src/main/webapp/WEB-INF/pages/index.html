@@ -2,54 +2,47 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Homepage</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 70%;
-            margin: auto;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 4px;
-        }
-        th {
-            background: #dadada;
-            height: 40px;
-            vertical-align: bottom;
-            padding: 0;
-        }
-    </style>
+    <title>All users</title>
+    <link rel="stylesheet" th:href="@{/styles/css/main.css}"/>
 </head>
 <body>
-<h1>Homepage</h1>
-<table>
-    <tr>
-        <th>id</th>
-        <th>first name</th>
-        <th>last name</th>
-        <th>age</th>
-        <th>email</th>
-        <th></th>
-    </tr>
-    <tr th:block th:each="user : ${users}">
-        <td th:text="${user.getId()}"></td>
-        <td th:text="${user.getFirstName()}"></td>
-        <td th:text="${user.getLastName()}"></td>
-        <td th:text="${user.getAge()}"></td>
-        <td th:text="${user.getEmail()}"></td>
-        <td>
-            <a th:href="@{/user_{id}/edit(id=${user.getId()})}">
-                <input type="button" value="edit"/>
-            </a>
-            <br/>
-            <form th:method="DELETE" th:action="@{/user_{id}(id=${user.getId()})}">
-                <input type="submit" value="delete"/>
-            </form>
-        </td>
-    </tr>
-</table>
-<br>
-<input type="button" value="Add new user" onclick="window.location.href='add'"/>
+<div class="wrap">
+    <h1>Users</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>first name</th>
+            <th>last name</th>
+            <th>age</th>
+            <th>email</th>
+            <th class="buttons"></th>
+        </tr>
+        <tr th:block th:each="user : ${users}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td>
+                <form th:method="GET" th:action="@{/user_{id}/edit(id=${user.getId()})}">
+                    <input type="submit" value="edit"/>
+                </form>
+                <form th:method="DELETE" th:action="@{/user_{id}(id=${user.getId()})}">
+                    <input type="submit" value="delete"/>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <input type="button" value="Add new user" onclick="window.location.href='add'"/>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
